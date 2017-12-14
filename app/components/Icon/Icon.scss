@@ -1,0 +1,35 @@
+///
+/// UI Icons
+@import 'variables';
+
+.Icon {
+  display: block;
+}
+
+.typeSvg {
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// --- Container size variations
+// @each $size in $icon-sizes {
+//   .size#{$size} {
+//     width: sg-icon-size($size);
+//     height: sg-icon-size($size);
+//   }
+// }
+
+// --- Icon rotation variations
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.rotate270 {
+  transform: rotate(270deg);
+}

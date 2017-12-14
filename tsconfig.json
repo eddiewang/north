@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "module": "es2015",
+    "jsx": "react",
+    "baseUrl": ".",
+    "typeRoots": [
+      "types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "*": [
+        "*",
+        "app/*",
+        "app/assets/*",
+        "mock/*"
+      ]
+    },
+    "target": "es2016",
+    "allowJs": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "transpileOnly": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

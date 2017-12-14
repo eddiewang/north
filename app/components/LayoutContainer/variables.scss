@@ -1,0 +1,14 @@
+////
+/// LayoutContainer
+/// @group components/LayoutContainer/variables
+////
+
+@mixin layout-padding {
+  padding-right: sg-spacing(tight);
+  padding-left: sg-spacing(tight);
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    padding-right: sg-spacing();
+    padding-left: sg-spacing();
+  }
+}

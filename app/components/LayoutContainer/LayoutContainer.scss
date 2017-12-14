@@ -1,0 +1,47 @@
+.LayoutContainer {
+  @include layout-container(sg-layout-width(layout-container));
+}
+
+.typeMain {
+  @media only screen and (min-width: sg-breakpoint()) {
+    display: flex;
+  }
+}
+
+.typeHeader {
+  position: relative;
+  display: flex;
+  height: 100%;
+
+  > * {
+    flex: 0 0 auto;
+  }
+
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    align-items: center;
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    justify-content: space-between;
+  }
+}
+
+.typeFooter {
+  @media only screen and (min-width: sg-breakpoint(portrait, tablet)) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    position: relative;
+    z-index: sg-z-index(page-footer);
+    // in case of overlapping sidenav
+    background: linear-gradient(
+      to bottom,
+      rgba(sg-color(sky, light), 0),
+      sg-color(sky, light) 60%
+    );
+  }
+}

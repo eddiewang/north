@@ -1,0 +1,97 @@
+////
+/// PageNavActivator
+/// @group components/PageNav/Activator
+////
+
+@import './keyframes';
+
+// Animations are in the keyframes.scss file
+// stylelint-disable no-unknown-animations
+
+.Activator {
+  position: absolute;
+  z-index: sg-z-index(page-nav-activator);
+  top: sg-offset-y(page-nav-activator);
+  left: sg-offset-x(page-nav-activator);
+  padding: $page-nav-activator-padding;
+  opacity: 0;
+  will-change: opacity;
+  animation: FadeActivator sg-duration(slow) sg-easing() forwards;
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    display: none;
+  }
+}
+
+///
+/// Hamburger menu styles
+
+.Hamburger {
+  position: relative;
+  width: sg-layout-width(hamburger);
+  height: sg-layout-height(hamburger);
+
+  &::before,
+  &::after {
+    content: '';
+    top: 0;
+    display: block;
+    width: 100%;
+    transition: background-color sg-duration() sg-easing();
+  }
+
+  &::before,
+  &::after,
+  .MiddleLine {
+    position: absolute;
+    left: 0;
+    height: $hamburger-line-height;
+    border-radius: $hamburger-line-height;
+    background-color: sg-color(ink, darker);
+    animation-duration: sg-duration();
+    animation-timing-function: sg-easing();
+    animation-fill-mode: both;
+  }
+
+  &::before {
+    // top: 0;
+    transform: translateY(0) rotate(0);
+    animation-name: HamburgerBefore-Out;
+  }
+
+  &::after {
+    // this should be a variable
+    // top: sg-layout-height(hamburger) - $hamburger-line-height;
+    transform: translateY(sg-layout-height(hamburger) - $hamburger-line-height)
+      rotate(0);
+    animation-name: HamburgerAfter-Out;
+  }
+}
+
+.MiddleLine {
+  top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+  width: 75%;
+  animation-name: HamburgerMiddle-Out;
+}
+
+///
+/// Hamburger expanded state
+
+.isExpanded {
+  .Hamburger::before,
+  .Hamburger::after {
+    background-color: sg-color(titlebar, dark);
+  }
+
+  .Hamburger::before {
+    animation-name: HamburgerBefore-In;
+  }
+
+  .Hamburger::after {
+    animation-name: HamburgerAfter-In;
+  }
+
+  .MiddleLine {
+    animation-name: HamburgerMiddle-In;
+  }
+}

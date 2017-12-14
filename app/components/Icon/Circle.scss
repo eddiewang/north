@@ -1,0 +1,69 @@
+////
+/// Icon Circle
+/// @group components/Icon/Circle
+////
+
+.Circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: sg-layout-width(icon-circle);
+  height: sg-layout-height(icon-circle);
+  border-radius: 50%;
+  background-color: sg-color(white);
+
+  > * {
+    flex: 0 0 auto;
+  }
+}
+
+.typeSolid {
+  color: sg-color(white);
+  background-color: sg-color(indigo);
+
+  a > & {
+    transition: background-color sg-duration() sg-easing();
+  }
+
+  a:hover > & {
+    background-color: sg-color(indigo, dark);
+  }
+
+  a:active > & {
+    background-color: sg-color(indigo, darker);
+  }
+
+  a:focus > & {
+    background-color: sg-color(indigo, darker);
+  }
+}
+
+.typeBorder {
+  border: 0.1rem solid sg-color(sky, dark);
+  color: sg-color(sky, dark); // inherited by `sg-border()`
+  box-shadow: inset 0 0 0 0.1rem rgba(sg-color(indigo), 0),
+    inset 0 0.1rem 0.2rem 0 rgba(sg-color(sky, dark), 0.2);
+
+  // temp solution
+
+  a > & {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: sg-duration();
+    transition-timing-function: sg-easing();
+  }
+
+  a:hover > & {
+    border-color: sg-color(indigo);
+    color: sg-color(indigo);
+    box-shadow: inset 0 0 0 0.1rem rgba(sg-color(indigo), 1),
+      inset 0 0.1rem 0.2rem 0 rgba(sg-color(sky, dark), 0.3);
+  }
+
+  a:focus > &,
+  a:active > & {
+    color: sg-color(indigo, dark);
+    background-color: sg-color(sky, lighter);
+    box-shadow: inset 0 0 0 0.1rem rgba(sg-color(indigo, dark), 1),
+      inset 0 0.1rem 0.2rem 0 rgba(sg-color(sky, dark), 0.3);
+  }
+}

@@ -1,0 +1,130 @@
+////
+/// Hamburger variables
+/// @group components/Hamburger/variables
+////
+
+@keyframes FadeActivator {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes HamburgerBefore-In {
+  0% {
+    // top: 0;
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(0);
+  }
+
+  100% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(45deg);
+  }
+}
+
+@keyframes HamburgerBefore-Out {
+  0% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(45deg);
+  }
+
+  50% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(0);
+  }
+
+  100% {
+    // top: 0;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes HamburgerAfter-In {
+  0% {
+    // top: sg-layout-height(hamburger) - $hamburger-line-height;
+    transform: translateY(
+      #{sg-layout-height(hamburger) - $hamburger-line-height}
+    )
+      rotate(0);
+  }
+
+  50% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(0);
+  }
+
+  100% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(-45deg);
+  }
+}
+
+@keyframes HamburgerAfter-Out {
+  0% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(-45deg);
+  }
+
+  50% {
+    // top: (sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2);
+    transform: translateY(
+      #{(sg-layout-height(hamburger) / 2) - ($hamburger-line-height / 2)}
+    )
+      rotate(0);
+  }
+
+  100% {
+    // top: sg-layout-height(hamburger) - $hamburger-line-height;
+    transform: translateY(sg-layout-height(hamburger) - $hamburger-line-height)
+      rotate(0);
+  }
+}
+
+@keyframes HamburgerMiddle-In {
+  0%,
+  25% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes HamburgerMiddle-Out {
+  0%,
+  25% {
+    opacity: 0;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+  }
+}

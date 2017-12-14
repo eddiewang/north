@@ -1,0 +1,217 @@
+////
+/// TypeContainer
+/// @group components/TypeContainer/TypeContainer
+////
+
+// stylelint-disable selector-max-combinators,selector-max-type,selector-max-compound-selectors,selector-max-specificity,selector-class-pattern
+
+@import 'TypeMixins';
+@import '../TypeHeading/TypeHeading';
+@import '../TypeStandfirst/TypeStandfirst';
+
+.TypeContainer {
+  visibility: visible; // I want the dang class, Webpack!
+
+  // --- Headings
+  h1 {
+    @include sg-TypeHeading(2);
+  }
+
+  h2 {
+    @include sg-TypeHeading(3);
+  }
+
+  h3 {
+    @include sg-TypeHeading(4);
+  }
+
+  h4 {
+    @include sg-TypeHeading(5);
+  }
+
+  // --- Paragraphs
+  p {
+    @include sg-TypeParagraph;
+  }
+
+  h1 + p {
+    @include sg-TypeStandfirst; // duplicating TypeParagraph styles... can we prevent this?
+  }
+
+  // --- Lists
+  ol,
+  ul {
+    margin-bottom: sg-spacing(tight);
+  }
+
+  li {
+    @include sg-TypeListItem;
+  }
+
+  ol {
+    @include sg-TypeListNumber;
+  }
+
+  ul {
+    @include sg-TypeListBullet;
+  }
+
+  // --- Links
+  a {
+    @include sg-TypeLink;
+  }
+
+  // --- Blockquote
+  blockquote {
+    @include sg-TypeBlockquote;
+    max-width: 100%;
+
+    p {
+      max-width: 100%;
+      margin-bottom: 0.8em;
+    }
+
+    li {
+      max-width: initial;
+      margin-bottom: 0.2em;
+      padding-left: 0;
+
+      &::before {
+        content: '';
+      }
+
+      ul {
+        margin-top: 0.2em;
+      }
+    }
+  }
+
+  // --- Code blocks
+  pre,
+  code {
+    @include sg-TypeCodeInline;
+  }
+
+  code {
+    margin-bottom: sg-spacing();
+    padding: 0.1rem 0.2rem;
+    border-radius: sg-radius();
+    font-size: 90%;
+    line-height: 2.2rem;
+    background-color: sg-color(sky, light);
+  }
+
+  // --- Dividers
+  hr {
+    margin-top: sg-spacing();
+    margin-bottom: sg-spacing();
+    border: 0;
+    border-top: sg-border(thin);
+    color: sg-color(ink, darker);
+
+    @media only screen and (min-width: sg-breakpoint(portrait, '1080p')) {
+      margin-top: sg-spacing(loosest);
+    }
+  }
+
+  // --- Components
+
+  > [data-reactid] > div {
+    margin-bottom: sg-spacing();
+  }
+
+  :global {
+    .CodeExample {
+      @include sg-TypeCodeBlock;
+      margin-bottom: sg-spacing();
+      padding: sg-spacing(tight);
+      white-space: pre-wrap;
+
+      code {
+        font-size: 100%;
+        background-color: transparent;
+        color: sg-color(yellow, dark);
+      }
+    }
+  }
+
+  // --- Margin reset
+  *:last-child:not(hr) {
+    margin-bottom: 0;
+  }
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+
+  tr {
+    border-bottom: 0.1rem solid sg-color(sky);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  th {
+    @include sg-TypeHeading(4);
+    padding: sg-spacing(tight);
+    font-size: sg-font-size(playground-table-header);
+    text-align: left;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  td {
+    @include sg-TypeParagraph;
+    padding: sg-spacing(tight);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+:global {
+  .hljs-tag {
+    color: sg-color(teal, dark);
+  }
+
+  .hljs-attr {
+    color: sg-color(red, dark);
+  }
+
+  .hljs-string {
+    color: sg-color(orange, dark);
+  }
+
+  .hljs-selector-class {
+    color: sg-color(orange, dark);
+  }
+
+  .hljs-attribute {
+    color: sg-color(teal, dark);
+  }
+
+  .hljs-keyword {
+    color: sg-color(orange, dark);
+  }
+
+  .hljs-function {
+    color: sg-color(red, dark);
+  }
+}
+
+:global .TypeContainerImage {
+  margin-bottom: sg-spacing();
+}

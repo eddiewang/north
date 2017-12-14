@@ -1,0 +1,173 @@
+////
+/// PageNav
+/// @group components/PageNav/PageNav
+////
+
+@import '../TypeContainer/TypeMixins';
+@import '../TypeHeading/TypeHeading';
+
+// Mobile nav currently uses a hard coded width / height in order to animate properly...
+// This limits us in adding / removing nav items, or changing the navigation titles.
+// We may need to remove these transition styles.
+
+@mixin _sg-PageNavClosed {
+  width: sg-layout-width(page-nav);
+  height: sg-layout-height(page-nav);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@mixin _sg-PageNavOpened {
+  width: sg-layout-width(page-nav, expanded);
+  height: sg-layout-height(page-nav, expanded);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+///
+/// Page Nav
+
+.PageNav {
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    position: absolute;
+    z-index: sg-z-index(page-nav);
+    top: sg-offset-y(page-nav);
+    right: 0;
+    left: -#{sg-offset-x(page-nav)};
+  }
+
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    z-index: sg-z-index(surface);
+  }
+}
+
+.Interior {
+  float: left;
+
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    @include _sg-PageNavClosed;
+    position: absolute;
+    z-index: sg-z-index(page-nav-interior);
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    border-radius: sg-radius(loose);
+    box-shadow: sg-shadow();
+    background-color: sg-color(white);
+    transition: width sg-duration() sg-easing(),
+      height sg-duration() sg-easing(), opacity sg-duration(fast) sg-easing(),
+      visibility sg-duration(fast) sg-easing();
+
+    &.isOpened {
+      @include _sg-PageNavOpened;
+    }
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    margin-right: sg-spacing(tighter);
+  }
+}
+
+.List {
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    padding-top: sg-spacing(looser);
+    padding-bottom: sg-spacing(tightest);
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    display: flex;
+  }
+}
+
+.Item {
+  @media only screen and (min-width: sg-breakpoint()) {
+    flex: 0 0 auto;
+  }
+}
+
+.Link {
+  @include sg-TypeHeading(4);
+  @include sg-type-reset-margin-bottom-and-line-height;
+  display: block;
+  color: sg-color(titlebar, dark);
+
+  @media only screen and (max-width: sg-breakpoint() - 1px) {
+    display: flex;
+    align-items: center;
+    height: sg-layout-height(page-nav-link);
+    padding-right: sg-spacing(tighter);
+    padding-left: sg-spacing(tighter);
+    font-weight: 400; // reset "non-current" links back to 400 for mobile
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    position: relative;
+    padding: sg-spacing(loosest) sg-spacing(tighter) sg-spacing(tighter)
+      sg-spacing(tighter);
+    color: sg-color(ink, dark);
+    transition: color sg-duration() sg-easing();
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: auto;
+      left: auto;
+      display: block;
+      width: calc(100% - #{sg-spacing(tighter) * 2});
+      border-top: sg-layout-height(page-nav-indicator) solid sg-color(indigo, dark);
+      transform: translateY(-#{sg-layout-height(page-nav-indicator)});
+      transition-property: background-color, transform;
+      transition-duration: sg-duration();
+      transition-timing-function: sg-easing();
+    }
+
+    &:hover {
+      color: sg-color(indigo, dark);
+    }
+
+    &:active,
+    &:focus {
+      color: sg-color(indigo);
+
+      &::before {
+        background-color: sg-color(indigo);
+      }
+    }
+  }
+}
+
+.SearchActivator {
+  float: right;
+  width: 2.9rem;
+  height: 2.9rem;
+  margin-top: 1.6em;
+
+  div {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media only screen and (min-width: sg-breakpoint()) {
+    display: none;
+  }
+}
+
+///
+/// Active (current) state
+
+.isCurrent {
+  .Link {
+    font-weight: 500;
+
+    @media only screen and (min-width: sg-breakpoint()) {
+      color: sg-color(indigo, dark);
+
+      &::before {
+        transform: translateY(0);
+      }
+    }
+  }
+}

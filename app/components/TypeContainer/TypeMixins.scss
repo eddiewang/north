@@ -1,0 +1,175 @@
+////
+/// TypeMixins
+/// @group components/TypeMixins/TypeMixins
+////
+
+@mixin sg-TypeParagraph {
+  max-width: sg-layout-width(type-content);
+  margin-bottom: 1.4em;
+  font-size: sg-font-size();
+  line-height: 1.55;
+  color: sg-color(ink, lighter);
+}
+
+@mixin sg-TypeListItem {
+  @include sg-TypeParagraph;
+  position: relative;
+  margin-bottom: 1em;
+  padding-left: sg-spacing(tight);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+  }
+
+  ol,
+  ul {
+    margin-top: sg-spacing(tighter);
+    margin-bottom: 0;
+  }
+}
+
+@mixin sg-TypeListNumber {
+  counter-reset: ordered-counter;
+
+  > li::before {
+    content: counter(ordered-counter, decimal) '.';
+    counter-increment: ordered-counter;
+  }
+}
+
+@mixin sg-TypeListBullet {
+  > li::before {
+    content: '\2022'; // bullet
+    font-size: 1.5em;
+    line-height: 1;
+  }
+}
+
+@mixin sg-TypeListItemReset {
+  position: static;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  &::before {
+    content: none;
+    display: none;
+  }
+
+  ol,
+  ul {
+    margin-top: 0;
+  }
+}
+
+@mixin sg-TypeLink {
+  color: sg-color(blue);
+  text-decoration: underline solid currentColor;
+  text-decoration-skip: ink;
+  transition: color sg-duration() sg-easing();
+
+  &:focus,
+  &:hover {
+    color: sg-color(blue, dark);
+  }
+
+  &:active {
+    color: sg-color(blue);
+  }
+}
+
+@mixin sg-TypeBlockquote {
+  padding: sg-spacing(tighter);
+  border-radius: sg-radius(loose);
+  text-align: center;
+  background-color: sg-color(sky, light);
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: sg-breakpoint(portrait, '1080p')) {
+    padding: sg-spacing(tight);
+  }
+}
+
+@mixin sg-TypeCodeInline {
+  font-family: sg-font-stack(monospace);
+  font-size: sg-font-size();
+  letter-spacing: -0.1rem; // is this wise to apply to a `code` block?
+}
+
+@mixin sg-TypeCodeBlock {
+  @include sg-TypeCodeInline;
+  border-radius: sg-radius(loose);
+  background-color: sg-color(sky, light);
+  color: sg-color(teal, dark);
+}
+
+///
+/// Helpers
+
+///
+/// Reset that dang spacing on Headings
+@mixin sg-type-reset-margin-bottom-and-line-height {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+///
+/// For truncating single line text.
+/// @param {String} $display (optional) - The value to be used for `display`.
+/// @param {Boolean} $descender-fix (optional) - Sometimes descenders are cutoff by overflow.
+@mixin sg-type-truncate($display: block, $descender-fix: false) {
+  $padding-bottom: if($descender-fix, 0.25em, null);
+  display: $display;
+  overflow: hidden;
+  max-width: 100%;
+  padding-bottom: $padding-bottom;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+///
+/// A better way to achieve `text-decoration: underline;` (allows for transitions)
+/// @param {Number} $bottom (optional) - Allows for increasing / decreasing vertical positioning.
+/// @param {Number} $weight (optional) - Weight of the underline (value to be used for `height`).
+@mixin link-underline($bottom: 0, $weight: 0.1rem) {
+  @if type-of($bottom) != number {
+    @error '#{$bottom} is not a number.';
+  }
+
+  @if type-of($weight) != number {
+    @error '#{$weight} is not a number.';
+  }
+
+  // perhaps there should be a param to prevent overriding `position`?
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: $bottom;
+    left: 0;
+    display: block;
+    height: $weight;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity sg-duration() sg-easing();
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+}
