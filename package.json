@@ -12,6 +12,7 @@
     "build":
       "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
     "lint": "eslint js/**/*.js",
+    "tscheck": "tsc --noEmit",
     "precommit": "lint-staged"
   },
   "author": "",
@@ -106,8 +107,7 @@
     "tscheck": "tsc --noEmit",
     "smoothscroll-polyfill": "0.4.0",
     "styled-components": "2.2.4",
-    "whatwg-fetch": "^2.0.2",
-    "prepush": "npm run tslint && npm run tscheck"
+    "whatwg-fetch": "^2.0.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": ["prettier --write", "git add"]
