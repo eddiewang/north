@@ -35,6 +35,7 @@ const protocol = process.env.HTTPS === true ? 'https' : 'http'
 const DEFAULT_PORT = argv.port || process.env.PORT || 3000
 const isInteractive = process.stdout.isTTY
 
+if (isDev) {
 detect(DEFAULT_PORT).then(port => {
   if (port === DEFAULT_PORT) {
     run(port)
@@ -57,6 +58,10 @@ detect(DEFAULT_PORT).then(port => {
     )
   }
 })
+} else {
+  run(DEFAULT_PORT)
+}
+
 // Start your app.
 const run = port => {
   app.listen(port, host, err => {

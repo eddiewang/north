@@ -4,12 +4,13 @@
   "description": "Not Another Boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production NPM_CONFIG_PRODUCTION=false node server",
+    "start": "NODE_ENV=production node server",
     "postinstall": "npm rebuild node-sass && npm run build",
     "start:tunnel": "ENABLE_TUNNEL=true node server",
     "tslint": "tslint --project . --exclude build/**/* --exclude server/**/**/*",
     "dev": "cross-env NODE_ENV=development nodemon --watch server server",
-    "build": "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
+    "build":
+      "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
     "lint": "eslint js/**/*.js",
     "precommit": "lint-staged"
   },
@@ -109,9 +110,6 @@
     "prepush": "npm run tslint && npm run tscheck"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{ts,tsx}": ["prettier --write", "git add"]
   }
 }
