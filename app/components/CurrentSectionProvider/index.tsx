@@ -52,11 +52,15 @@ export default class CurrentSectionProvider extends React.PureComponent<Props, {
     currentSection: 'navigation'
   }
 
-  private debouncedMeasure = debounce(this.measure, 250)
+  private debouncedMeasure
 
   public constructor(props) {
     super(props)
+  }
+
+  public componentDidMount() {
     this.measure = this.measure.bind(this)
+    this.debouncedMeasure = debounce(this.measure, 250)
   }
 
   public getChildContext() {
@@ -75,19 +79,25 @@ export default class CurrentSectionProvider extends React.PureComponent<Props, {
   }
 
   private measure() {
-    this.state.currentSection = 'navigation'
+    this.setState({
+      currentSection: 'navigation'
+    })
 
     const contentSections: any = document.querySelectorAll('[data-content-section]')
 
     if (contentSections.length > 1) {
       ;[...contentSections].forEach((section: HTMLElement) => {
         if (isInView(section)) {
-          this.state.currentSection = section.id
+          this.setState({
+            currentSection: section.id
+          })
         }
       })
 
       if (isAtBottom()) {
-        this.state.currentSection = contentSections[length].id
+        this.setState({
+          currentSection: contentSections[length].id
+        })
       }
     }
   }

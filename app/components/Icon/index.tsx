@@ -48,7 +48,6 @@ export default class Icon extends React.Component<Props & AssetProps, {}> {
       rotate && styles[variationName('rotate', rotate)],
       classes
     )
-    console.log(this.props)
 
     const renderAsset =
       iconType === 'svg' ? (

@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import smoothscroll from 'smoothscroll-polyfill'
 
-import { BrowserRouter as Router, Route, browserHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import mainStore from 'stores/MainStore'
 
 import { Provider } from 'mobx-react'
@@ -45,7 +45,7 @@ function renderApp(CurrRoutes: React.ComponentClass<any>) {
     <AppContainer>
       <Provider {...stores}>
         <IntlProvider>
-          <Router history={browserHistory} onUpdate={hashLinkScroll} children={<CurrRoutes />} />
+          <Router onUpdate={hashLinkScroll} children={<CurrRoutes />} />
         </IntlProvider>
       </Provider>
     </AppContainer>,
