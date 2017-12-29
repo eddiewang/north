@@ -35,6 +35,31 @@ const protocol = process.env.HTTPS === true ? 'https' : 'http'
 const DEFAULT_PORT = argv.port || process.env.PORT || 3000
 const isInteractive = process.stdout.isTTY
 
+// Start your app.
+const run = port => {
+  app.listen(port, host, err => {
+    if (err) {
+      return logger.error(err.message)
+    }
+
+    // Connect to ngrok in dev mode
+    if (ngrok) {
+      ngrok.connect(port, (innerErr, url) => {
+        if (innerErr) {
+          return logger.error(innerErr)
+        }
+
+        logger.appStarted(port, prettyHost, url)
+      })
+    } else {
+      logger.appStarted(port, prettyHost)
+    }
+    if (isDev) {
+      // openBrowser(protocol + '://' + prettyHost + ':' + port + '/')
+    }
+  })
+}
+
 if (isDev) {
 detect(DEFAULT_PORT).then(port => {
   if (port === DEFAULT_PORT) {
@@ -62,27 +87,4 @@ detect(DEFAULT_PORT).then(port => {
   run(DEFAULT_PORT)
 }
 
-// Start your app.
-const run = port => {
-  app.listen(port, host, err => {
-    if (err) {
-      return logger.error(err.message)
-    }
 
-    // Connect to ngrok in dev mode
-    if (ngrok) {
-      ngrok.connect(port, (innerErr, url) => {
-        if (innerErr) {
-          return logger.error(innerErr)
-        }
-
-        logger.appStarted(port, prettyHost, url)
-      })
-    } else {
-      logger.appStarted(port, prettyHost)
-    }
-    if (isDev) {
-      // openBrowser(protocol + '://' + prettyHost + ':' + port + '/')
-    }
-  })
-}

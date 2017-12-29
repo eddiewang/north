@@ -103,8 +103,6 @@
     "react-intl": "2.4.0",
     "react-router": "^4.2.0",
     "react-router-dom": "4.2.2",
-    "tslint": "tslint --project .",
-    "tscheck": "tsc --noEmit",
     "smoothscroll-polyfill": "0.4.0",
     "styled-components": "2.2.4",
     "whatwg-fetch": "^2.0.2"
