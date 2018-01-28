@@ -8,28 +8,17 @@
     "module": "es2015",
     "jsx": "react",
     "baseUrl": ".",
-    "typeRoots": [
-      "types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["types"],
+    "lib": ["es2017", "dom"],
     "paths": {
-      "*": [
-        "*",
-        "app/*",
-        "app/assets/*",
-        "mock/*"
-      ]
+      "*": ["*", "app/*", "app/assets/*", "mock/*"]
     },
     "target": "es2016",
     "allowJs": true
   },
   "awesomeTypescriptLoaderOptions": {
-    "transpileOnly": true
+    "transpileOnly": true,
+    "useBabel": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

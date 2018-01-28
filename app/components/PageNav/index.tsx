@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter, InjectedRouter } from 'react-router'
-import * as classNames from 'classnames'
+import classNames from 'classnames'
 import { variationName } from 'utilities/styles'
 
 import withBreakpoint from '../../components/WithBreakpoint'

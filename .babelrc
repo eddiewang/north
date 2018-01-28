@@ -1,10 +1,12 @@
 {
-  "presets": [
-    "env",
-    "stage-0",
-    "react"
-  ],
+  "presets": ["env", "stage-0", "react"],
   "plugins": [
+    [
+      "react-intl",
+      {
+        "messagesDir": "./translations/extractedMessages"
+      }
+    ],
     "react-hot-loader/babel",
     "transform-async-to-generator",
     "transform-decorators-legacy"

@@ -9,8 +9,7 @@
     "start:tunnel": "ENABLE_TUNNEL=true node server",
     "tslint": "tslint --project . --exclude build/**/* --exclude server/**/**/*",
     "dev": "cross-env NODE_ENV=development nodemon --watch server server",
-    "build":
-      "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
+    "build": "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
     "lint": "eslint js/**/*.js",
     "tscheck": "tsc --noEmit",
     "precommit": "lint-staged"
@@ -27,6 +26,7 @@
     "babel-eslint": "^7.1.1",
     "babel-jest": "21.2.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-react-intl": "2.4.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.22.0",
@@ -61,6 +61,7 @@
     "postcss-reporter": "^5.0.0",
     "postcss-smart-import": "^0.7.5",
     "prettier": "1.9.2",
+    "react-intl-translations-manager": "5.0.1",
     "react-router-loader": "^0.5.4",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
@@ -108,6 +109,9 @@
     "whatwg-fetch": "^2.0.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["prettier --write", "git add"]
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
