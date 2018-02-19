@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 //
 // React Components
-import CurrentSectionProvider from 'components/CurrentSectionProvider'
+// import CurrentSectionProvider from 'components/CurrentSectionProvider'
 import PageHeader from 'components/PageHeader'
 // import PageNav from 'components/PageNav'
 
@@ -26,15 +26,15 @@ class Layout extends React.Component<Props, any> {
     ]
 
     return (
-      <CurrentSectionProvider>
-        <div className="AppFrame">
-          <Helmet defaultTitle={PAGE_NAME} titleTemplate={`%s - ${PAGE_NAME}`} />
-          <PageHeader>
-            {/* <PageNav basePath={''} items={navItems} activePath={location.pathname} /> */}
-          </PageHeader>
-          {children}
-        </div>
-      </CurrentSectionProvider>
+      // <CurrentSectionProvider>
+      <div className="AppFrame">
+        <Helmet defaultTitle={PAGE_NAME} titleTemplate={`%s - ${PAGE_NAME}`} />
+        <PageHeader>
+          {/* <PageNav basePath={''} items={navItems} activePath={location.pathname} /> */}
+        </PageHeader>
+        {children}
+      </div>
+      // </CurrentSectionProvider>
     )
   }
 }

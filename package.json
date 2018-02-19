@@ -4,14 +4,15 @@
   "description": "Not Another Boilerplate",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development ts-node-dev -P tsconfig.server.json --respawn server",
     "start": "NODE_ENV=production ts-node -P tsconfig.server.json server",
     "postinstall": "npm rebuild node-sass && npm run build",
     "start:tunnel": "ENABLE_TUNNEL=true ts-node -P tsconfig.server.json server",
-    "tslint": "tslint --project tsconfig.client.json",
-    "dev": "cross-env NODE_ENV=development ts-node-dev -P tsconfig.server.json --respawn server",
-    "build": "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
+    "tslint": "tslint --project tsconfig.server.json && tslint --project .",
+    "tscheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "build":
+      "rimraf ./build && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color --progress --display-error-details --display-chunks",
     "lint": "eslint js/**/*.js",
-    "tscheck": "tsc --noEmit",
     "precommit": "lint-staged"
   },
   "author": "",
@@ -114,9 +115,6 @@
     "whatwg-fetch": "^2.0.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{ts,tsx}": ["prettier --write", "git add"]
   }
 }
