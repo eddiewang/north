@@ -1,24 +1,16 @@
 {
+  "extends": "./config/base",
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "strictNullChecks": true,
     "moduleResolution": "node",
     "module": "es2015",
-    "jsx": "react",
     "baseUrl": ".",
-    "typeRoots": ["types"],
+    "typeRoots": ["types", "node_modules/@types"],
+    "target": "es2016",
     "lib": ["es2017", "dom"],
     "paths": {
       "*": ["*", "app/*", "app/assets/*", "mock/*"]
     },
-    "target": "es2016",
-    "allowJs": true
+    "jsx": "react"
   },
-  "awesomeTypescriptLoaderOptions": {
-    "transpileOnly": true,
-    "useBabel": true
-  },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build", "server"]
 }

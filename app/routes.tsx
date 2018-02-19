@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { Route, RouterState } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import Spinner from 'components/Spinner'
 
 import Layout from './Layout'
 import Home from 'pages/Home'
-type ComponentCallback = (_: RouterState | null, value: any) => any
 
 export default class Routes extends React.Component {
   public render() {
@@ -31,7 +30,7 @@ function getComponent(page) {
             width: '100%'
           }}
         >
-          <Spinner green />
+          <Spinner />
         </div>
       )
     }

@@ -4,6 +4,12 @@ build
 node_modules
 .cache-loader
 
+# Don't check in env variables
+.env
+
+# Don't check in auto-generated typedefs
+app/**/*.scss.d.ts
+
 # Cruft
 .DS_Store
 npm-debug.log

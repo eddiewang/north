@@ -1,0 +1,12 @@
+{
+  "extends": "./config/base",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "typeRoots": ["types", "node_modules/@types"],
+    "target": "es2016",
+    "lib": ["es2017"]
+  },
+  "exclude": ["node_modules", "app", "build"]
+}

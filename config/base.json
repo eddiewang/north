@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "allowJs": true
+  }
+}

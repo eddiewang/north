@@ -1,10 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const {
-  CheckerPlugin,
-  TsConfigPathsPlugin
-} = require('awesome-typescript-loader')
+// const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 process.noDeprecation = true
 
@@ -25,7 +23,10 @@ module.exports = options => ({
           { loader: 'react-hot-loader/webpack' },
           { loader: 'cache-loader' },
           {
-            loader: 'awesome-typescript-loader'
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'ts-loader'
           }
         ],
         exclude: [/node_modules/]
@@ -100,17 +101,18 @@ module.exports = options => ({
   },
 
   plugins: options.plugins.concat([
+    // new TsConfigPathsPlugin({
+    //   useCache: false,
+    //   configFileName: `${__dirname}/app/tsconfig.json`,
+    //   compiler: 'typescript'
+    // }),
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch'
     }),
 
     new CopyWebpackPlugin([{ from: 'public' }]),
-    new CheckerPlugin(),
-    new TsConfigPathsPlugin({
-      tsconfig: `${__dirname}/tsconfig.json`,
-      compiler: 'typescript'
-    }),
+    // new CheckerPlugin(),
 
     new webpack.DefinePlugin({
       'process.env': {
@@ -123,6 +125,14 @@ module.exports = options => ({
   resolve: {
     modules: ['app', 'node_modules', 'app/assets', 'mock'],
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.scss', '.css']
+    // plugins: [
+    //   new TsconfigPathsPlugin({
+    //     // configFile: 'monkey.json'
+    //     // useCache: false,
+    //     configFile: `${__dirname}/app/tsconfig.json`
+    //     // compiler: 'typescript'
+    //   })
+    // ]
   },
   target: 'web',
   performance: options.performance || {},

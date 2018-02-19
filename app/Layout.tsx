@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 // React Components
 import CurrentSectionProvider from 'components/CurrentSectionProvider'
 import PageHeader from 'components/PageHeader'
-import PageNav from 'components/PageNav'
+// import PageNav from 'components/PageNav'
 
 interface Props {
   location: Location
@@ -30,7 +30,7 @@ class Layout extends React.Component<Props, any> {
         <div className="AppFrame">
           <Helmet defaultTitle={PAGE_NAME} titleTemplate={`%s - ${PAGE_NAME}`} />
           <PageHeader>
-            <PageNav basePath={''} items={navItems} activePath={location.pathname} />
+            {/* <PageNav basePath={''} items={navItems} activePath={location.pathname} /> */}
           </PageHeader>
           {children}
         </div>

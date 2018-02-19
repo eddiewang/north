@@ -1,7 +1,7 @@
 import { observable } from 'mobx'
 
 class MainStore {
-  @observable counter = 0
+  @observable public counter = 0
 }
 
 const ms = new MainStore()
