@@ -1,12 +1,18 @@
 FROM node:boron
 
-# Bundle APP files
-COPY . / src/
-COPY package.json src/
+RUN groupadd -r nodejs && useradd -m -r -g nodejs nodejs
+USER nodejs
+RUN mkdir -p /home/nodejs/app
+WORKDIR /home/nodejs/app
 
-WORKDIR src
+COPY package.json /home/nodejs/app/package.json
+COPY yarn.lock /home/nodejs/app/yarn.lock
 # Install app dependencies
-RUN npm install && npm run build
+RUN yarn
+
+COPY . /home/nodejs/app
+
+# RUN npm rebuild node-sass
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
